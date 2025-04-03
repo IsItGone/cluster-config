@@ -1,0 +1,58 @@
+#apiVersion: argoproj.io/v1alpha1
+#kind: ApplicationSet
+#metadata:
+#  name: appset
+#spec:
+#  generators:
+#    - list:
+#        elements:
+#          - env: dev
+#            namespace: dev
+#          - env: prod
+#            namespace: prod
+#
+#  template:
+#    metadata:
+#      name: my-app-{{env}}
+#      labels:
+#        env: "{{env}}"
+#    spec:
+#      project: default
+#      source:
+#        repoURL: https://github.com/IsItGone/graphql.git # graphql 을 {{service}}로 수정하고 제너레이터에서 정의
+#        targetRevision: charts
+#        path: chart
+#        helm:
+#          valueFiles:
+#            - {{env}}-values.yaml
+#      destination:
+#        server: "{{cluster}}"
+#        namespace: "{{namespace}}"
+#      syncPolicy:
+#        automated:
+#          prune: true
+#          selfHeal: true
+
+#아래 Application 형식으로 구성
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: graphql
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/IsItGone/graphql'
+    targetRevision: charts
+    path: chart
+    helm:
+      valueFiles:
+        - dev-values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
