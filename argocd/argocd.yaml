@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-app
+  name: argocd
   namespace: argocd
 spec:
   project: default
@@ -10,7 +10,7 @@ spec:
     chart: argo-cd
     targetRevision: 7.8.20
     helm:
-      valuesObject: # TODO: insecure 옵션 제거 및 ingress 설정
+      valuesObject: # TODO: insecure 옵션 제거 및 실제 ingress 설정
         server:
           extraArgs:
             - "--insecure"
