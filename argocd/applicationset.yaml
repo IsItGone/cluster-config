@@ -1,3 +1,4 @@
+# TODO: AppSet으로 구성
 #apiVersion: argoproj.io/v1alpha1
 #kind: ApplicationSet
 #metadata:
