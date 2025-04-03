@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/IsItGone/cluster-config.git
+    repoURL: https://github.com/IsItGone/cluster-config
     targetRevision: main
     path: argocd
     directory:

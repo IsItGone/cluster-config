@@ -7,13 +7,17 @@ spec:
   generators:
     - matrix:
         generators:
-          - scmProvider:
-              github:
-                organization: IsItGone
-              filters:
-                - branchMatch: charts # charts 브랜치가 존재하는 레포지토리만 선택
-                - pathsExist: # charts 브랜치에 chart 디렉터리가 있는 repo만 선택
-                    - chart
+#          - scmProvider:
+#              github:
+#                organization: IsItGone
+#              filters:
+#                - branchMatch: charts # charts 브랜치가 존재하는 레포지토리만 선택
+#                - pathsExist: # charts 브랜치에 chart 디렉터리가 있는 repo만 선택
+#                    - chart
+          - list:
+              elements:
+                - repository: graphql
+                - repository: client
           - list:
               elements:
                 - env: dev
@@ -24,7 +28,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: '{{ .url }}'
+        repoURL: https://github.com/IsItGone/{{ .repository }}
         targetRevision: charts
         path: chart
         helm:
