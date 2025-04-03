@@ -22,21 +22,22 @@ spec:
               elements:
                 - env: dev
                 - env: prod
+
   template:
     metadata:
-      name: '{{ .repository }}-{{ .env }}'
+      name: '{{.repository}}-{{.env}}'
     spec:
       project: default
       source:
-        repoURL: https://github.com/IsItGone/{{ .repository }}
+        repoURL: https://github.com/IsItGone/{{.repository}}
         targetRevision: charts
         path: chart
         helm:
           valueFiles:
-            - '{{ .env }}-values.yaml'
+            - '{{.env}}-values.yaml'
       destination:
         server: https://kubernetes.default.svc # ArgoCD가 위치한 클러스터
-        namespace: '{{ .env }}'
+        namespace: '{{.env}}'
       syncPolicy:
         automated:
           prune: true
