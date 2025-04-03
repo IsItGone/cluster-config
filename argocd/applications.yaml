@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: applications
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - scmProvider:
+              github:
+                organization: IsItGone
+              filters:
+                - branchMatch: charts # charts 브랜치가 존재하는 레포지토리만 선택
+                - pathsExist: # charts 브랜치에 chart 디렉터리가 있는 repo만 선택
+                    - chart
+          - list:
+              elements:
+                - env: dev
+                - env: prod
+  template:
+    metadata:
+      name: '{{ .repository }}-{{ .env }}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{ .url }}'
+        targetRevision: charts
+        path: chart
+        helm:
+          valueFiles:
+            - '{{ .env }}-values.yaml'
+      destination:
+        server: https://kubernetes.default.svc # ArgoCD가 위치한 클러스터
+        namespace: '{{ .env }}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
