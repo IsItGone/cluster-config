@@ -1,21 +1,19 @@
-# Cluster Config
+# 클러스터 구성
 
-A GitOps repository for declarative Kubernetes cluster configuration.
+Kubernetes 클러스터의 선언적 구성을 위한 GitOps 저장소입니다.
 
-## Overview
+## 개요
 
-This repository stores configuration files that define the desired state of our Kubernetes clusters using GitOps principles. It includes settings for namespaces, infrastructure components, ArgoCD bootstrapping, and application deployments.
+이 저장소는 GitOps 원칙에 따라 Kubernetes 클러스터의 원하는 상태를 정의하는 manifest 파일들을 보관합니다.
 
-## Repository Structure
+## 저장소 구조
 
-- **clusters/**: Environment-specific configurations (dev, prod).
-- **base/**: Common configurations shared across environments (ArgoCD bootstrapping, shared policies)
+- **argocd/**: ArgoCD가 관리하는 Application 리소스 정의
+- **clusters/**: 클러스터에서 사용하는 manifest (네임스페이스, 컨피그맵 등)
+- **bootstrap.yaml**: ArgoCD Application을 참조하는 최상위 Application 
 
-## Usage
+## 사용 방법
 
-- The ArgoCD bootstrap script directly installs into the cluster using Helm.
-- After installation, ArgoCD's own resources are managed through the GitOps repository.
-- ArgoCD automatically synchronizes the configurations with the cluster.
-
-[//]: # (## License)
-[//]: # ([Insert license information here])
+- 차트버전이 7.8.20인 ArgoCD가 클러스터에 설치되어 있어야 합니다.
+- /bootstrap.yaml에 정의된 Application을 ArgoCD가 관리하도록 등록해야합니다.
+- 하위 Application은 자동으로 관리 대상으로 추가됩니다.
