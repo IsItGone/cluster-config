@@ -28,7 +28,7 @@ spec:
         path: '{{.path.path}}' # apps/*/*/chart
         helm:
           valueFiles:
-            - values.yaml
+            - ./values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.values.env}}'
