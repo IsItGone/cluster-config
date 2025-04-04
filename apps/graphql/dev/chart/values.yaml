@@ -1,5 +1,6 @@
 spring-base:
   fullnameOverride: graphql
+  nameOverride: graphql
   replicaCount: 1
   image:
     repository: ghcr.io/isitgone/graphql
