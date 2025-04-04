@@ -19,7 +19,7 @@ spec:
 
   template:
     metadata:
-      name: '{{.values.app_name}}-{{.values.env}}-chart'
+      name: '{{.values.app_name}}-{{.values.env}}'
     spec:
       project: default
       source:
