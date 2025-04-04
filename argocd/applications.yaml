@@ -25,7 +25,10 @@ spec:
       source:
         repoURL: https://github.com/IsItGone/cluster-config
         path: '{{.path.path}}' # apps/*/*/
-        helm: {}
+        targetRevision: main
+        helm:
+          valueFiles:
+            - values.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.values.env}}'
