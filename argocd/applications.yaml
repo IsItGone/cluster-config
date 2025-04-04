@@ -15,18 +15,20 @@ spec:
           - path: apps/*/*/chart
         values:
           app_name: '{{index .path.segments 1}}' # {app-name}
+          env: '{{index .path.segments 2}}' # {environment}
 
   template:
     metadata:
-      name: '{{.values.app_name}}-{{.path.basename}}'
+      name: '{{.values.app_name}}-{{.values.env}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/IsItGone/cluster-config
         path: '{{.path.path}}' # apps/*/*/
+        helm: {}
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.path.basename}}'
+        namespace: '{{.values.env}}'
       syncPolicy:
         automated:
           prune: true
