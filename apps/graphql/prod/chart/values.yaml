@@ -12,7 +12,7 @@ resources:
 
 env:
   - name: MONGODB_URI
-    value: prod # TODO
+    value: prod
 
 spring:
   profile: prod

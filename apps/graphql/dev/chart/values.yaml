@@ -11,7 +11,7 @@ resources:
 
 env:
   - name: MONGODB_URI
-    value: dev # TODO: secretkeyref로 설정
+    value: dev
 
 spring:
   profile: dev
