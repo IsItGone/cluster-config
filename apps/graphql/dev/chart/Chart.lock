@@ -1,0 +1,6 @@
+dependencies:
+- name: spring-base
+  repository: https://isitgone.github.io/helm-base-chart/packages
+  version: 0.1.0
+digest: sha256:7c3afd2bd942f4693ff3029dfb0cb337d2412d67e0e3400bc489f1dc93b44b27
+generated: "2025-04-05T06:27:26.4059563+09:00"
