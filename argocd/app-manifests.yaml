@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-manifests
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+    - git:
+        repoURL: https://github.com/IsItGone/cluster-config # GitOps repo
+        revision: main
+        directories:
+          - path: apps/*/*
+          # apps/{app-name}/{environment}
+        values:
+          app_name: '{{index .path.segments 1}}' # {app-name}
+          env: '{{index .path.segments 2}}' # {environment}
+
+  template:
+    metadata:
+      name: '{{.values.app_name}}-{{.values.env}}-manifests'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/IsItGone/cluster-config
+        path: '{{.path.path}}' # apps/*/*/chart
+        directory:
+          recurse: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.values.env}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

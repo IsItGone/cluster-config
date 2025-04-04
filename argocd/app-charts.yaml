@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: applications
+  name: app-charts
   namespace: argocd
 spec:
   goTemplate: true
@@ -11,20 +11,20 @@ spec:
         repoURL: https://github.com/IsItGone/cluster-config # GitOps repo
         revision: main
         directories:
-          - path: apps/*/* # apps/{app-name}/{environment}, {{path.basename}} means {environment}
+          - path: apps/*/*/chart
+          # apps/{app-name}/{environment}/chart
         values:
           app_name: '{{index .path.segments 1}}' # {app-name}
           env: '{{index .path.segments 2}}' # {environment}
 
   template:
     metadata:
-      name: '{{.values.app_name}}-{{.values.env}}'
+      name: '{{.values.app_name}}-{{.values.env}}-chart'
     spec:
       project: default
       source:
         repoURL: https://github.com/IsItGone/cluster-config
-        path: '{{.path.path}}' # apps/*/*/
-        targetRevision: main
+        path: '{{.path.path}}' # apps/*/*/chart
         helm:
           valueFiles:
             - values.yaml
