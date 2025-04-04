@@ -7,39 +7,27 @@ spec:
   goTemplate: true
   goTemplateOptions: [ "missingkey=error" ]
   generators:
-    - matrix:
-        generators:
-#          - scmProvider:
-#              github:
-#                organization: IsItGone
-#              filters:
-#                - branchMatch: charts # charts 브랜치가 존재하는 레포지토리만 선택
-#                - pathsExist: # charts 브랜치에 chart 디렉터리가 있는 repo만 선택
-#                    - chart
-          - list:
-              elements:
-                - repository: graphql
-                - repository: client
-          - list:
-              elements:
-                - env: dev
-                - env: prod
+    - git:
+        repoURL: https://github.com/IsItGone/cluster-config # GitOps repo
+        revision: main
+        directories:
+          - path: apps/*/* # apps/{app-name}/{environment}, {{path.basename}} means {environment}
+        values:
+          app_name: '{{index .path.segments 1}}' # {app-name}
 
   template:
     metadata:
-      name: '{{.repository}}-{{.env}}'
+      name: '{{.values.app_name}}-{{.path.basename}}'
     spec:
       project: default
       source:
-        repoURL: https://github.com/IsItGone/{{.repository}}
-        targetRevision: charts
-        path: chart
-        helm:
-          valueFiles:
-            - '{{.env}}-values.yaml'
+        repoURL: https://github.com/IsItGone/cluster-config
+        path: '{{.path.path}}' # apps/*/*/
+        directory:
+          recurse: true
       destination:
-        server: https://kubernetes.default.svc # ArgoCD가 위치한 클러스터
-        namespace: '{{.env}}'
+        server: https://kubernetes.default.svc
+        namespace: '{{.path.basename}}'
       syncPolicy:
         automated:
           prune: true
