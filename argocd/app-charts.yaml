@@ -11,7 +11,7 @@ spec:
         repoURL: https://github.com/IsItGone/cluster-config # GitOps repo
         revision: main
         directories:
-          - path: apps/*/*
+          - path: apps/*/*/chart
           # apps/{app-name}/{environment}/chart
         values:
           app_name: '{{index .path.segments 1}}' # {app-name}
@@ -29,8 +29,6 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-        directory:
-          recurse: true
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{.values.env}}'
