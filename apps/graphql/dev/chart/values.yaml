@@ -19,7 +19,6 @@ spring-base:
           name: graphql
           key: DB_URI
 
-
   spring:
     profile: dev
     application:
