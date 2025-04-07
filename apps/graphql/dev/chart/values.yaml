@@ -4,7 +4,7 @@ spring-base:
   replicaCount: 1
   image:
     repository: ghcr.io/isitgone/graphql
-    tag: 4d3ec82ce6205626f2a356b09ebe6dd00360095c
+    tag: 3d73861f18913aa3583ce0f5da989fc36605b4ff
   ingress:
     host: dev.isitgone.site
   resources:
