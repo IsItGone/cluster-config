@@ -10,7 +10,7 @@ spring-base:
   resources:
     limits:
       memory: 256Mi
-
+  healthPath: /api/actuator/health
   env:
     - name: DB_URI
       valueFrom:
