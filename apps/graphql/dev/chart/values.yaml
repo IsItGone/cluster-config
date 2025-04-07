@@ -9,7 +9,6 @@ spring-base:
     host: dev.isitgone.site
   resources:
     limits:
-      cpu: 100m
       memory: 256Mi
 
   env:
