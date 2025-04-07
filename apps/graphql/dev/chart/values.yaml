@@ -35,3 +35,10 @@ spring-base:
           data:
             mongodb:
               uri: ${DB_URI}
+        management:
+          endpoints:
+            web:
+              exposure:
+                include: health
+              discovery:
+                enabled: false
