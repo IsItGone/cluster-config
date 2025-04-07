@@ -13,8 +13,12 @@ spring-base:
       memory: 256Mi
 
   env:
-    - name: MONGODB_URI
-      value: dev
+    - name: DB_URI
+      valueFrom:
+        secretKeyRef:
+          name: graphql
+          key: DB_URI
+
 
   spring:
     profile: dev
@@ -32,4 +36,4 @@ spring-base:
             name: graphql
           data:
             mongodb:
-              uri: ${MONGODB_URI}
+              uri: ${DB_URI}
