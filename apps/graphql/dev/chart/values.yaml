@@ -4,7 +4,7 @@ spring-base:
   replicaCount: 1
   image:
     repository: ghcr.io/isitgone/graphql
-    tag: 5071c258d8042928136d5912fee355aea84c795c
+    tag: e30256952a85f94d4498339d3e491460f725579d
   ingress:
     host: dev.isitgone.site
   resources:
@@ -24,9 +24,9 @@ spring-base:
         spring:
           graphql:
             cors:
-              allowed-origins: [ "http://localhost:8080" ]
-              allowed-methods: [ "*" ]
-              allowed-headers: [ "*" ]
+              allowed-origins: ["http://localhost:8080"]
+              allowed-methods: ["*"]
+              allowed-headers: ["*"]
               allow-credentials: true
               max-age: 1800
           application:
