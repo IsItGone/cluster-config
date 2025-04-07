@@ -1,20 +1,22 @@
 spring-base:
+  fullnameOverride: graphql
+  nameOverride: graphql
   replicaCount: 3
   image:
     repository: ghcr.io/isitgone/graphql
     tag: 0.0.0
-
   ingress:
     host: isitgone.site
-
   resources:
     requests:
       memory: 256Mi
-
+  healthPath: /api/actuator/health
   env:
-    - name: MONGODB_URI
-      value: prod
-
+    - name: DB_URI
+      valueFrom:
+        secretKeyRef:
+          name: graphql
+          key: DB_URI
   spring:
     profile: prod
     application:
@@ -24,4 +26,11 @@ spring-base:
             name: graphql
           data:
             mongodb:
-              uri: ${MONGODB_URI}
+              uri: ${DB_URI}
+        management:
+          endpoints:
+            web:
+              exposure:
+                include: health
+              discovery:
+                enabled: false

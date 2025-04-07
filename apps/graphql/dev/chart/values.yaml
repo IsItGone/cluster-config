@@ -17,7 +17,6 @@ spring-base:
         secretKeyRef:
           name: graphql
           key: DB_URI
-
   spring:
     profile: dev
     application:
