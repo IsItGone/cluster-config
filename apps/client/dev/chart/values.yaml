@@ -4,7 +4,7 @@ flutter-base:
   replicaCount: 1
   image:
     repository: ghcr.io/isitgone/client
-    tag: c71177f5d66c0d01b027ae3558582b1ad6f9d3bd
+    tag: a1d5f7767af9a9c377d1c8d305af55dda22b024f
   ingress:
     host: dev.isitgone.site
   resources:
