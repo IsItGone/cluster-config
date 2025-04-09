@@ -31,9 +31,13 @@ spec:
                 id: github
                 name: GitHub
                 config:
-                  clientID: <clientID>
-                  clientSecret: <clientSecret>
+                  clientID: $GITHUB_CLIENT_ID
+                  clientSecret: $GITHUB_CLIENT_SECRET
                   redirectURI: https://argo.isitgone.site/api/dex/callback
+        dex:
+          envFrom:
+            - secretRef:
+                name: github-client
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
