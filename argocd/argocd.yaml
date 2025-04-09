@@ -16,6 +16,24 @@ spec:
             - "--insecure"
           service:
             type: ClusterIP
+        configs:
+          rbac:
+            scopes: '[email]'
+            policy.default: role:none
+            policy.csv: |
+              g, ph38230119@gmail.com, role:admin
+          cm:
+            url: https://argo.isitgone.site
+            admin.enabled: false
+            dex.config: |
+              connectors:
+              - type: github
+                id: github
+                name: GitHub
+                config:
+                  clientID: <clientID>
+                  clientSecret: <clientSecret>
+                  redirectURI: https://argo.isitgone.site/api/dex/callback
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
@@ -34,7 +52,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`argo.isitgone.site`) || Host(`argo.isitgone.local`)
+    - match: Host(`argo.isitgone.site`)
       kind: Rule
       services:
         - name: argocd-server
