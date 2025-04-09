@@ -41,7 +41,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
