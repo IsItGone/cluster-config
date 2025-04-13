@@ -10,11 +10,16 @@ spring-base:
   resources:
     limits:
       memory: 256Mi
-  healthPath: /api/actuator/health
-  probe:
-    initialDelaySeconds: 30
+  livenessProbe:
+    healthPath: /actuator/health/liveness
+    initialDelaySeconds: 20
     periodSeconds: 10
-    timeoutSeconds: 3
+    timeoutSeconds: 1
+  readinessProbe:
+    healthPath: /actuator/health/readiness
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    timeoutSeconds: 1
   env:
     - name: DB_URI
       valueFrom:
@@ -44,3 +49,15 @@ spring-base:
                 include: health
               discovery:
                 enabled: false
+          endpoint:
+            health:
+              probes:
+                enabled: true
+              show-details: never
+          health:
+            defaults:
+              enabled: false
+            livenessState:
+              enabled: true
+            readinessState:
+              enabled: true
