@@ -12,8 +12,9 @@ spring-base:
       memory: 256Mi
   healthPath: /api/actuator/health
   probe:
-    initialDelaySeconds: 40
-    periodSeconds: 20
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 3
   env:
     - name: DB_URI
       valueFrom:

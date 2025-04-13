@@ -13,6 +13,8 @@ spring-base:
   healthPath: /api/actuator/health
   probe:
     initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 3
   env:
     - name: DB_URI
       valueFrom:
