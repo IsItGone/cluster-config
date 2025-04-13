@@ -12,13 +12,13 @@ spring-base:
       memory: 256Mi
   livenessProbe:
     healthPath: /api/actuator/health/liveness
-    initialDelaySeconds: 20
-    periodSeconds: 15
+    initialDelaySeconds: 30
+    periodSeconds: 10
     timeoutSeconds: 1
   readinessProbe:
     healthPath: /api/actuator/health/readiness
-    initialDelaySeconds: 20
-    periodSeconds: 15
+    initialDelaySeconds: 30
+    periodSeconds: 10
     timeoutSeconds: 1
   env:
     - name: DB_URI
