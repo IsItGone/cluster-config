@@ -13,12 +13,12 @@ spring-base:
   livenessProbe:
     healthPath: /api/actuator/health/liveness
     initialDelaySeconds: 20
-    periodSeconds: 10
+    periodSeconds: 15
     timeoutSeconds: 1
   readinessProbe:
     healthPath: /api/actuator/health/readiness
     initialDelaySeconds: 20
-    periodSeconds: 10
+    periodSeconds: 15
     timeoutSeconds: 1
   env:
     - name: DB_URI
