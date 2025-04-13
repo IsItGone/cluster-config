@@ -11,12 +11,12 @@ spring-base:
     limits:
       memory: 256Mi
   livenessProbe:
-    healthPath: /actuator/health/liveness
+    healthPath: /api/actuator/health/liveness
     initialDelaySeconds: 20
     periodSeconds: 10
     timeoutSeconds: 1
   readinessProbe:
-    healthPath: /actuator/health/readiness
+    healthPath: /api/actuator/health/readiness
     initialDelaySeconds: 20
     periodSeconds: 10
     timeoutSeconds: 1
