@@ -7,4 +7,4 @@ dependencies:
     version: "*"
     repository: "https://isitgone.github.io/helm-base-chart/packages"
 version: 0.0.0
-appVersion: 09aec4cca702c6f7a0ed23a55eaf1427f4750e71
+appVersion: ec9feef71f3b9ef3fdb09017e4a16a5cf5d560c7
