@@ -31,6 +31,12 @@ spring-base:
     application:
       yml:
         spring:
+          graphql:
+            cors:
+              allowed-origins: ["https://web.isitgone.site"]
+              allowed-methods: ["*"]
+              allowed-headers: ["*"]
+              max-age: 1800
           application:
             name: graphql
           data:
