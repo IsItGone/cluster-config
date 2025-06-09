@@ -12,9 +12,6 @@ spec:
             to: websecure
             scheme: https
             permanent: true
-      websecure:
-        tls:
-          certResolver: default
     # Let's Encrypt (ACME) Certificate Resolvers 설정
     # https://doc.traefik.io/traefik/https/acme/#certificate-resolvers
     # https://artifacthub.io/packages/helm/traefik/traefik?modal=values&path=certificatesResolvers
