@@ -6,7 +6,7 @@ spring-base:
     repository: ghcr.io/isitgone/graphql
     tag: 6f6c0df8bb9e8f431748370621597650554a1058
   ingress:
-    host: dev.isitgone.site
+    host: dev.isitgone.store
   livenessProbe:
     healthPath: /api/actuator/health/liveness
     initialDelaySeconds: 20
@@ -30,9 +30,9 @@ spring-base:
         spring:
           graphql:
             cors:
-              allowed-origins: ["https://dev.isitgone.site", "http://localhost:8080"]
-              allowed-methods: ["*"]
-              allowed-headers: ["*"]
+              allowed-origins: [ "https://dev.isitgone.site", "http://localhost:8080" ]
+              allowed-methods: [ "*" ]
+              allowed-headers: [ "*" ]
               max-age: 1800
           application:
             name: graphql
