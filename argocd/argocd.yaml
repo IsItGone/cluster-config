@@ -53,12 +53,12 @@ metadata:
   namespace: argocd
 spec:
   entryPoints:
-    - websecure
+    - web
   routes:
     - match: Host(`argo.isitgone.site`)
       kind: Rule
       services:
         - name: argocd-server
           port: 80
-  tls:
-    certResolver: default
+#  tls:
+#    certResolver: default
