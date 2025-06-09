@@ -23,7 +23,7 @@ spec:
             policy.csv: |
               g, ph38230119@gmail.com, role:admin
           cm:
-            url: https://argo.isitgone.store
+            url: https://argo.isitgone.site
             admin.enabled: false
             dex.config: |
               connectors:
