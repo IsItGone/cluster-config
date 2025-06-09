@@ -24,7 +24,7 @@ spec:
     # certificatesResolvers: # 최신 버전 필드이름
     certResolvers: 
       default:
-        acme: # 최신 버전
+        # acme: # 최신 버전
         email: ddiddhr@gmail.com # Let's Encrypt에서 인증서 만료 알림 등을 보낼 이메일
         storage: /data/acme.json
 
