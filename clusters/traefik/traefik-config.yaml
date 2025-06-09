@@ -4,14 +4,17 @@ metadata:
   name: traefik # K3s 내장 Traefik HelmChart의 이름
   namespace: kube-system # K3s 내장 Traefik이 설치된 네임스페이스
 spec:
-  valuesContent: |
+  valuesContent: # |-
     ports:
       web:
-        expose: true
-        redirectTo: websecure
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
       websecure:
-        expose: true
-
+        tls:
+          certResolver: default
     # Let's Encrypt (ACME) Certificate Resolvers 설정
     certResolvers:
       default:
