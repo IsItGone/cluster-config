@@ -1,0 +1,35 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChartConfig
+metadata:
+  name: traefik # K3s 내장 Traefik HelmChart의 이름
+  namespace: kube-system # K3s 내장 Traefik이 설치된 네임스페이스
+spec:
+  valuesContent: |
+    ports:
+      web:
+        expose: true
+        redirectTo: websecure
+      websecure:
+        expose: true
+
+    # Let's Encrypt (ACME) Certificate Resolvers 설정
+    certResolvers:
+      default:
+        acme:
+          email: ddiddhr@gmail.com # Let's Encrypt에서 인증서 만료 알림 등을 보낼 이메일
+          storage: /data/acme.json
+
+          httpChallenge:
+            entryPoint: web # 80
+
+            # Let's Encrypt 서버 설정
+            # 초기 테스트 시에는 Staging 서버를 사용 권장 (Rate Limits 존재)
+            caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+
+    api:
+      dashboard: false # default
+      insecure: false # default
+    healthcheck:
+      enabled: true # default
+    metrics:
+      enabled: true # default
