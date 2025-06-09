@@ -33,7 +33,7 @@ spec:
                 config:
                   clientID: $GITHUB_CLIENT_ID
                   clientSecret: $GITHUB_CLIENT_SECRET
-                  redirectURI: https://argo.isitgone.store/api/dex/callback
+                  redirectURI: https://argo.isitgone.site/api/dex/callback
         dex:
           envFrom:
             - secretRef:
@@ -55,7 +55,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`argo.isitgone.store`)
+    - match: Host(`argo.isitgone.site`)
       kind: Rule
       services:
         - name: argocd-server
