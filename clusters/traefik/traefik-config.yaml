@@ -33,7 +33,7 @@ spec:
 
           # Let's Encrypt 서버 설정
           # 초기 테스트 시에는 Staging 서버를 사용 권장 (Rate Limits 존재)
-        caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+        # caServer: https://acme-staging-v02.api.letsencrypt.org/directory
 
     api:
       dashboard: false # default
