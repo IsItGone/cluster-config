@@ -16,11 +16,13 @@ spec:
         tls:
           certResolver: default
     # Let's Encrypt (ACME) Certificate Resolvers 설정
-    certResolvers:
+    # https://doc.traefik.io/traefik/https/acme/#certificate-resolvers
+    # https://artifacthub.io/packages/helm/traefik/traefik?modal=values&path=certificatesResolvers
+    certificatesResolvers:
       default:
         acme:
           email: ddiddhr@gmail.com # Let's Encrypt에서 인증서 만료 알림 등을 보낼 이메일
-          storage: /data/acme.json
+          storage: acme.json
 
           httpChallenge:
             entryPoint: web # 80
