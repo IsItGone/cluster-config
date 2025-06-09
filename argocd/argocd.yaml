@@ -53,7 +53,7 @@ metadata:
   namespace: argocd
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - match: Host(`argo.isitgone.store`)
       kind: Rule
