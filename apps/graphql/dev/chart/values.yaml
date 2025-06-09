@@ -30,7 +30,7 @@ spring-base:
         spring:
           graphql:
             cors:
-              allowed-origins: [ "https://dev.isitgone.site", "http://localhost:8080" ]
+              allowed-origins: [ "https://dev.isitgone.store", "http://localhost:8080" ]
               allowed-methods: [ "*" ]
               allowed-headers: [ "*" ]
               max-age: 1800
