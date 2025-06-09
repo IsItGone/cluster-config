@@ -4,7 +4,7 @@ metadata:
   name: traefik # K3s 내장 Traefik HelmChart의 이름
   namespace: kube-system # K3s 내장 Traefik이 설치된 네임스페이스
 spec:
-  valuesContent: # |-
+  valuesContent: |-
     ports:
       web:
         redirections:
