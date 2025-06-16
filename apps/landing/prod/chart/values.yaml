@@ -1,0 +1,10 @@
+flutter-base:
+  fullnameOverride: client-landing
+  nameOverride: client-landing
+  image:
+    repository: ghcr.io/isitgone/landing
+    tag: 1.0.0
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
